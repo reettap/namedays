@@ -5,14 +5,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
+/**
+ *
+ * @author Reetta Puska
+ */
 public class Namedays {
 
-    /**
+    /**Command line tool for viewing namedays by date
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Hello there!");
 
         //define filename and date:
         String filename = retrieveFilename(args);
@@ -25,8 +28,13 @@ public class Namedays {
         printNames(namedays, date);
     }
 
+    /**Reads file and returns a hashmap containing the date-names pairs
+     *
+     * @param filename
+     * @return
+     */
     public static HashMap<String, String> readFile(String filename) {
-        //Read file and return hashmap containing the date-names pairs
+        //
         HashMap<String, String> namedays = new HashMap();
 
         try {
@@ -41,6 +49,11 @@ public class Namedays {
         return namedays;
     }
 
+    /** Parses a line containing date and names, and adds it to the given hashmap
+     *
+     * @param line line of a file to get parsed and added to the hashmap
+     * @param namedays hashmap for adding the date-name pairs
+     */
     public static void addNamedayInMap(String line, HashMap<String, String> namedays) {
         String[] parts = line.split(";");
         if (parts.length >= 2) {
@@ -48,6 +61,13 @@ public class Namedays {
         }
     }
 
+    /**Fetches the date from the arguments if possible,
+     * otherwise prompts the user for a date.
+     *
+     * @param args command line arguments to be parsed
+     * @param scan scanner for user input
+     * @return String representing the date
+     */
     public static String retrieveDate(String[] args, Scanner scan) {
         String date;
         try {
@@ -60,6 +80,12 @@ public class Namedays {
         return date;
     }
 
+    /**Fetches the filename from the arguments if possible,
+     * otherwise uses the default "nimet.csv"
+     *
+     * @param args command line arguments to be parsed
+     * @return String representing the filename
+     */
     public static String retrieveFilename(String[] args) {
         String file;
         try {
@@ -70,6 +96,11 @@ public class Namedays {
         return file;
     }
 
+    /**Prints the namedays for given date
+     *
+     * @param namedays Hashmap containing the date-nameday pairs
+     * @param date date for which the names are returned
+     */
     public static void printNames(HashMap<String, String> namedays, String date) {
         String names = namedays.get(date);
         if (names == null) {

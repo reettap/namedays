@@ -75,9 +75,10 @@ public class Namedays {
     }
 
     /**
+     * Fetches the namedays corresponding to the given date.
      *
      * @param dateString
-     * @return
+     * @return ArrayList of names corresponding to the given date
      */
     public ArrayList<String> fetchNamesForDate(String dateString) {
         try {
